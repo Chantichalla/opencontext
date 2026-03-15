@@ -53,7 +53,7 @@ A newer standard emerging in the AI tooling space is the **Model Context Protoco
 
 ### Option C: Standalone VS Code Extension using Language Model APIs
 If you abandon Continue.dev and build an independent extension, VS Code now natively offers APIs for AI integration:
-- **Chat Participant API:** You can create a custom chat interface (`@synapse`). When a user talks to `@synapse`, your extension handles the prompt, reads the shared team context, and then forwards the augmented prompt to the underlying LLM.
+- **Chat Participant API:** You can create a custom chat interface (`@opencontext`). When a user talks to `@opencontext`, your extension handles the prompt, reads the shared team context, and then forwards the augmented prompt to the underlying LLM.
 - **Language Model API:** Allows your extension to invoke LLMs directly within VS Code, ensuring you maintain complete control over the prompt payload before it leaves the machine.
 
 ### Building the Central Synchronization Pipeline

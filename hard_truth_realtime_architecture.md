@@ -2,7 +2,7 @@
 
 *Workflow active: `@[/hard-truth]`*
 
-As a senior AI engineer reviewing your thoughts, I am going to be very direct with you on what you got right and what you entirely misunderstood about the Synapse architecture.
+As a senior AI engineer reviewing your thoughts, I am going to be very direct with you on what you got right and what you entirely misunderstood about the opencontext architecture.
 
 You said:
 > *"First there is a .json file created inside directory... then it also goes through git commit, then it can be imported into anyones chat sessions... But this still needs git to share, and it is not a continuos one..."*
@@ -35,29 +35,29 @@ You deploy a tiny Node.js + Express server to a cloud provider (like Render). Th
 *   **Protocol:** It listens for incoming HTTP POST requests (when someone saves a decision) and maintains open WebSocket connections with every developer on the team.
 
 ### 2. The VS Code Extension (The Local Agent)
-Every developer on the team installs the Synapse VS Code extension.
+Every developer on the team installs the opencontext VS Code extension.
 *   **The WebSocket Link:** When Dev A opens VS Code, the extension immediately opens a WebSocket connection to the cloud Sync Server. 
 *   **The Local Cache:** The server instantly blasts the latest `context.json` state down the WebSocket channel. The extension saves this into its internal, local memory cache (NOT as a file in the user's project directory that Git tracks, but usually inside the extension's `globalState`).
-*   **Real-Time Push:** If Dev A opens the command palette and types "Synapse: Save Decision", the extension fires an HTTP POST to the Sync Server. The Sync Server updates its SQLite database, and immediately broadcasts an "update" event over WebSockets to Dev B and Dev C.
+*   **Real-Time Push:** If Dev A opens the command palette and types "opencontext: Save Decision", the extension fires an HTTP POST to the Sync Server. The Sync Server updates its SQLite database, and immediately broadcasts an "update" event over WebSockets to Dev B and Dev C.
 *   **Result:** Within 50 milliseconds, Dev B and Dev C have identical, updated contexts in their local VS Code memory. **Zero Git commits required.**
 
 ### 3. Continue.dev Integration (The AI Prompt Injection)
 Now, how does this real-time context actually get into the AI's brain?
 
 Continue.dev has a feature called **Context Providers**. 
-*   **The Local Endpoint:** The Synapse VS Code extension spins up a tiny, hidden, local HTTP server on the developer's laptop (e.g., `http://localhost:3000/context`). 
+*   **The Local Endpoint:** The opencontext VS Code extension spins up a tiny, hidden, local HTTP server on the developer's laptop (e.g., `http://localhost:3000/context`). 
 *   **The Interception:** You configure Continue.dev with an `@HTTP` provider pointing to that localhost URL. 
-*   **The Magic Moment:** When Dev B types *"Hey AI, explain this billing module"* into the Continue.dev chat sidebar, Context.dev silently fires off an HTTP GET request to `http://localhost:3000/context`. The Synapse extension replies instantly with the *most recently synced* JSON string from its local cache. Continue.dev invisible prepends this string to the prompt and sends it to GPT-4/Claude. 
+*   **The Magic Moment:** When Dev B types *"Hey AI, explain this billing module"* into the Continue.dev chat sidebar, Context.dev silently fires off an HTTP GET request to `http://localhost:3000/context`. The opencontext extension replies instantly with the *most recently synced* JSON string from its local cache. Continue.dev invisible prepends this string to the prompt and sends it to GPT-4/Claude. 
 
 ---
 
 ## How the Team Integrates This (A Day in the Life)
 
-1.  **Onboarding:** A new dev joins the team. They install the Synapse Extension and Continue.dev in VS Code.
-2.  **Configuration:** They enter the team's custom Sync Server URL (e.g., `https://synapse-myteam.onrender.com`) into the extension settings.
+1.  **Onboarding:** A new dev joins the team. They install the opencontext Extension and Continue.dev in VS Code.
+2.  **Configuration:** They enter the team's custom Sync Server URL (e.g., `https://opencontext-myteam.onrender.com`) into the extension settings.
 3.  **The Sync:** The moment they hit save, the WebSocket connects, downloads the entire project history, stack conventions, and all architectural decisions from the last year into their local extension cache.
-4.  **Vibe Coding:** They open a file in the `payments/` directory. They ask Continue.dev a question. Continue.dev pings the local Synapse extension, the extension sees they are in the `payments/` directory, filters the real-time cache for payments-related decisions, and feeds it to the AI.
-5.  **A New Decision:** They decide to switch from Stripe to PayPal. They run "Synapse: Save Decision". The extension pushes this to the Sync Server. The Sync Server broadcasts it to the team. 
+4.  **Vibe Coding:** They open a file in the `payments/` directory. They ask Continue.dev a question. Continue.dev pings the local opencontext extension, the extension sees they are in the `payments/` directory, filters the real-time cache for payments-related decisions, and feeds it to the AI.
+5.  **A New Decision:** They decide to switch from Stripe to PayPal. They run "opencontext: Save Decision". The extension pushes this to the Sync Server. The Sync Server broadcasts it to the team. 
 6.  **Instant Reality:** Across the office, the Tech Lead asks their own AI a question about billing. Because their WebSocket just updated their local cache 2 seconds ago, their AI is already fully aware that the team is migrating to PayPal today, completely ignoring the fact that the code hasn't even been written or committed to Git yet.
 
 ### Final Verdict 
