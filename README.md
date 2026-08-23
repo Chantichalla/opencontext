@@ -7,7 +7,30 @@
 Markdown cards in `.memory/` · a deterministic SQLite/FTS5 index · an MCP stdio server
 with exactly three tools.
 
-*Zero dependencies. Python 3.10+ standard library only.*
+<a href="#-quickstart"><img src="https://img.shields.io/badge/RELEASE-v0.1.0-2ea44f?style=flat" alt="Release v0.1.0"></a>
+<a href="#-quickstart"><img src="https://img.shields.io/badge/PYTHON-3.10%2B-3776AB?style=flat" alt="Python 3.10+"></a>
+<a href="#-quickstart"><img src="https://img.shields.io/badge/ZERO_DEPENDENCIES-YES-brightgreen?style=flat" alt="Zero dependencies"></a>
+<a href="#-wire-up-your-ai-agents"><img src="https://img.shields.io/badge/MCP-NATIVE_SERVER-8A2BE2?style=flat" alt="MCP native server"></a>
+
+<br>
+
+<img src="https://img.shields.io/badge/BUILT_WITH-PYTHON-3776AB?style=flat" alt="Built with Python">
+<img src="https://img.shields.io/badge/BUILT_WITH-SQLITE-003B57?style=flat" alt="Built with SQLite">
+<img src="https://img.shields.io/badge/BUILT_WITH-FTS5-00758F?style=flat" alt="Built with FTS5">
+<img src="https://img.shields.io/badge/BUILT_WITH-GIT-F05032?style=flat" alt="Built with Git">
+
+<br>
+
+<sub>Works with any MCP-compatible client</sub><br>
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-Claude_Code-1C1C1C?style=flat" alt="Claude Code">
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-OpenCode-1C1C1C?style=flat" alt="OpenCode">
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-Cursor-1C1C1C?style=flat" alt="Cursor">
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-VS_Code-007ACC?style=flat" alt="VS Code">
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-Claude_Desktop-1C1C1C?style=flat" alt="Claude Desktop">
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-Windsurf-1C1C1C?style=flat" alt="Windsurf">
+<img src="https://img.shields.io/badge/%F0%9F%A4%96-Any_MCP_Client-2ea44f?style=flat" alt="Any MCP client">
+
+<br>
 
 [Quickstart](#-quickstart) · [MCP setup](#-wire-up-your-ai-agents) · [How it works](#-how-it-works) · [Design principles](#-design-principles) · [Roadmap](#-roadmap)
 
@@ -156,7 +179,6 @@ synapse/
 ├── hub.py      # Multi-repo aggregation helpers
 └── __main__.py # python -m synapse entry point
 tests/          # 15 unit tests, zero mocking gymnastics
-doc_ev.md       # The complete design story: why v0 failed, principles, protocol details
 ```
 
 ## 🗺 Roadmap
@@ -169,8 +191,6 @@ doc_ev.md       # The complete design story: why v0 failed, principles, protocol
 - [ ] **`synapse doctor`**: lint cards for broken frontmatter and dangling links
 - [ ] **Episodic consolidation**: opt-in summarization of session cards into drafts
 - [ ] **Optional semantic search**: embeddings behind an optional dependency flag
-
-See [`doc_ev.md`](doc_ev.md) for the full end-to-end story of how this design came to be.
 
 ## 🤝 Contributing
 
