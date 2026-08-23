@@ -1,9 +1,9 @@
-# Python
+md# Python
 __pycache__/
 *.py[cod]
 .venv/
 *.egg-info/
-
+doc_ev.md
 # Synapse derived artifacts (rebuildable from .memory/ markdown)
 .memory/.index.db
 .memory/.index.stamp
