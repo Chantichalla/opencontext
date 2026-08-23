@@ -1,1 +1,17 @@
-synapse_prd.html
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Synapse derived artifacts (rebuildable from .memory/ markdown)
+.memory/.index.db
+.memory/.index.stamp
+
+# Tooling
+/.opencode
+/.vscode
+
+# OS
+Thumbs.db
+.DS_Store
